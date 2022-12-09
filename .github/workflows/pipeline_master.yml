@@ -1,0 +1,26 @@
+name: Android CI
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+     - uses: actions/checkout@v2.5.0
+    
+     - name: Set up JDK
+       uses: actions/setup-java@v3.6.0
+       with:
+         distribution: 'corretto'
+         java-version: '11'
+        
+     - name: Setup Android SDK
+       uses: android-actions/setup-android@v2.0.2
+      
+     - name: Ktlint
+       run: ./gradlew ktlintCheck
+       
+     - name: debug build check
+       run: ./gradlew assembleDebug

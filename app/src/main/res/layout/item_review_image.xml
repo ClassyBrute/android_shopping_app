@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="itemVM"
+            type="com.gd.intership.hdziedziura.androidshopingapp.presentation.viewmodels.reviews.item_vm.ReviewImageVM" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/image_container"
+        android:layout_width="@dimen/dp_53"
+        android:layout_height="@dimen/dp_53"
+        android:layout_marginEnd="@dimen/dp_5"
+        app:cardCornerRadius="@dimen/dp_2">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_right"
+            android:scaleType="centerCrop"
+            imageRes="@{itemVM.item.image}" />
+    </androidx.cardview.widget.CardView>
+</layout>

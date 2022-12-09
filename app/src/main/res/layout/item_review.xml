@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="itemVM"
+            type="com.gd.intership.hdziedziura.androidshopingapp.presentation.viewmodels.reviews.item_vm.ReviewVM" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/review_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@color/background">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
+            android:onClick="@{() -> itemVM.onReviewClick()}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@color/white"
+            app:cardCornerRadius="@dimen/dp_4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/review_container_inner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/dp_12"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{itemVM.item.name}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_7"
+                    android:textStyle="bold"
+                    tools:text="Helene Moore" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/rating_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5">
+
+                    <RatingBar
+                        android:id="@+id/rating"
+                        style="@style/Widget.AppCompat.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:progressTint="@color/gold"
+                        android:rating="@{itemVM.item.rating}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{itemVM.item.date}"
+                        android:textSize="@dimen/sp_5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="June 5, 2019" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:lineSpacingExtra="5dp"
+                    android:text="@{itemVM.item.text}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_7"
+                    tools:text="The dress is great! Very classy and comfortable. It fit perfectly! I'm 5'7 and 130 pounds. I am a 34B chest. This dress would be too long for those who are shorter but could be hemmed. I wouldn't recommend it for those big chested as I am smaller chested and it fit me perfectly. The underarms were not too wide and the dress was made well." />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/images"
+                    rvItems="@{itemVM.item.images}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    app:layoutManager=".presentation.ui.layoutManager.HorizontalLayoutManager"/>
+
+                <androidx.appcompat.widget.AppCompatCheckedTextView
+                    android:id="@+id/thumbs_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:checkMark="@drawable/ic_baseline_thumb_up_24"
+                    android:checkMarkTint="@color/grey"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/helpful"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/sp_5" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/picture_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/color_select"
+            app:cardCornerRadius="30dp"
+            app:layout_constraintBottom_toTopOf="@id/card"
+            app:layout_constraintEnd_toStartOf="@id/card"
+            app:layout_constraintStart_toStartOf="@id/card"
+            app:layout_constraintTop_toTopOf="@id/card">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/picture"
+                imageRes="@{itemVM.item.picture}"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_top" />
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

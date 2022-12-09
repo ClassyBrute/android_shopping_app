@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <variable
+            name="vm"
+            type="com.gd.intership.hdziedziura.androidshopingapp.presentation.viewmodels.shop.ShopProductListViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/main_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@id/background"
+            app:layout_constraintTop_toTopOf="@id/background">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextFilter"
+                android:text="@string/price_range" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_44">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:text="@={vm.lowestPriceString}"
+                    tools:text="$20"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_7"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:text="@={vm.highestPriceString}"
+                    tools:text="$100"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_7"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.slider.RangeSlider
+                    android:id="@+id/range_slider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_27"
+                    android:layout_marginBottom="@dimen/dp_17"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:thumbColor="@color/red"
+                    app:thumbRadius="11dp"
+                    app:trackColorActive="@color/red"
+                    app:trackColorInactive="@color/grey"
+                    app:values="@={vm.valuesFromTo}"
+                    app:rangePrice="@={vm.sliderRange}" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextFilter"
+                android:text="@string/colors" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/colorsFilters"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_46"
+                rvItems="@{vm.colors}"
+                app:layoutManager=".presentation.ui.layoutManager.HorizontalLayoutManager"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextFilter"
+                android:text="@string/sizes" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sizesFilters"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_46"
+                rvItems="@{vm.sizes}"
+                app:layoutManager=".presentation.ui.layoutManager.HorizontalLayoutManager"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/bottom_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/dp_12"
+            app:layout_constraintStart_toStartOf="@id/background"
+            app:layout_constraintBottom_toBottomOf="@id/background">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/discard_button"
+                style="@style/ButtonFilters"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_18"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:text="@string/discard"
+                android:textColor="@color/black"
+                app:strokeWidth="1dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/apply_button"
+                style="@style/ButtonFilters"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_18"
+                android:layout_marginStart="23dp"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:layout_weight="1"
+                android:backgroundTint="@color/red"
+                android:text="@string/apply"
+                android:textColor="@color/white" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

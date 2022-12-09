@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="itemVM"
+            type="com.gd.intership.hdziedziura.androidshopingapp.presentation.viewmodels.details.item_vm.SizeVM" />
+
+    </data>
+
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/selector_size"
+        android:gravity="center"
+        tools:text="XS"
+        android:text="@{itemVM.item.size}"
+        android:checked="@{itemVM.item.checked}"
+        android:onClick="@{() -> itemVM.onSizeClick()}"
+        android:textAlignment="center"
+        android:textColor="@drawable/selector_text_color" />
+</layout>

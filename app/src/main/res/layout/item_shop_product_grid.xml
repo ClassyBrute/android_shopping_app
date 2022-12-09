@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="itemVM"
+            type="com.gd.intership.hdziedziura.androidshopingapp.presentation.viewmodels.shop.item_vm.ProductVM" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:onClick="@{() -> itemVM.onProductClick()}"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/item_card"
+            android:layout_width="@dimen/dp_82"
+            android:layout_height="@dimen/dp_118"
+            app:cardCornerRadius="@dimen/dp_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/item_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:imageUrl="@{itemVM.item.image}" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/ButtonLogin"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_12"
+                android:layout_margin="@dimen/dp_4"
+                android:backgroundTint="@color/red"
+                android:clickable="false"
+                android:text="@{itemVM.item.saleAmount}"
+                android:textSize="@dimen/sp_5"
+                android:textStyle="bold"
+                android:visibility="@{itemVM.item.sale ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/ButtonLogin"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_12"
+                android:layout_margin="@dimen/dp_4"
+                android:backgroundTint="@color/black"
+                android:clickable="false"
+                android:text="@string/new_product"
+                android:textSize="@dimen/sp_5"
+                android:textStyle="bold"
+                android:visibility="@{itemVM.item.new ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/favorite"
+            style="@style/ButtonFavorite"
+            android:onClick="@{(view) -> itemVM.onFavoriteClick(view)}"
+            android:checked="@{itemVM.item.favorite}"
+            app:layout_constraintEnd_toEndOf="@id/item_card"
+            app:layout_constraintTop_toBottomOf="@id/item_card"
+            app:layout_constraintBottom_toBottomOf="@id/item_card" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/item_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:progressTint="@color/gold"
+            android:secondaryProgressTint="@color/transparent"
+            android:rating="@{itemVM.item.rating}"
+            android:numStars="5"
+            app:layout_constraintTop_toBottomOf="@id/item_card"
+            app:layout_constraintStart_toStartOf="@id/item_card" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"("+itemVM.item.count+")"}'
+            android:layout_marginStart="@dimen/dp_1"
+            android:textSize="@dimen/sp_5"
+            app:layout_constraintStart_toEndOf="@id/item_rating"
+            app:layout_constraintBottom_toBottomOf="@id/item_rating"
+            app:layout_constraintTop_toTopOf="@id/item_rating" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_2"
+            android:text="@{itemVM.item.brand}"
+            tools:text="Dorothy Perkins"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/sp_5"
+            app:layout_constraintStart_toStartOf="@id/item_card"
+            app:layout_constraintTop_toBottomOf="@id/item_rating" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_1"
+            tools:text="Evening Dress"
+            android:text="@{itemVM.item.title}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_8"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:lines="1"
+            app:layout_constraintTop_toBottomOf="@id/item_brand"
+            app:layout_constraintStart_toStartOf="@id/item_card" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/price_old"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{itemVM.item.sale ? View.VISIBLE : View.GONE}"
+            tools:text="@string/price_strike"
+            android:text="@{itemVM.item.oldPrice + '$'}"
+            app:strikeThrough="@{true}"
+            android:textColor="@color/grey"
+            app:layout_constraintStart_toStartOf="@id/item_card"
+            app:layout_constraintTop_toBottomOf="@id/item_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/price_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/price"
+            android:text="@{itemVM.item.price + '$'}"
+            android:textColor="@color/red"
+            app:layout_constraintStart_toEndOf="@id/price_old"
+            app:layout_constraintTop_toBottomOf="@id/item_name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

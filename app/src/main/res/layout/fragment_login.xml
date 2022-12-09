@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.gd.intership.hdziedziura.androidshopingapp.presentation.viewmodels.LoginViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/loginText"
+                style="@style/TextLoginTitle"
+                android:text="@string/login"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layout_inputs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_36"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/loginText">
+
+                <com.gd.intership.hdziedziura.androidshopingapp.presentation.ui.views.TextInputLayout
+                    android:id="@+id/user_name_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_4"
+                    style="@style/TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/user_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_32"
+                        android:afterTextChanged="@{() -> vm.validateName()}"
+                        android:text="@={vm.name}"
+                        android:inputType="text"
+                        android:hint="@string/name"/>
+
+                </com.gd.intership.hdziedziura.androidshopingapp.presentation.ui.views.TextInputLayout>
+
+                <com.gd.intership.hdziedziura.androidshopingapp.presentation.ui.views.TextInputLayout
+                    android:id="@+id/user_password_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/user_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_32"
+                        android:afterTextChanged="@{() -> vm.validatePassword()}"
+                        android:text="@={vm.password}"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"/>
+
+                </com.gd.intership.hdziedziura.androidshopingapp.presentation.ui.views.TextInputLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_go_to_forgot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:onClick="@{() -> vm.onGoToForgotPasswordButtonClick()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_inputs">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_go_to_forgot"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/forgot_password_q"
+                    android:textSize="@dimen/sp_7"
+                    app:layout_constraintEnd_toStartOf="@id/icon_go_to_forgot"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_go_to_forgot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_2"
+                    android:src="@drawable/ic_baseline_arrow_right_alt_24"
+                    app:layout_constraintBottom_toBottomOf="@id/text_go_to_forgot"
+                    app:layout_constraintEnd_toEndOf="@id/container_go_to_forgot"
+                    app:layout_constraintTop_toTopOf="@id/text_go_to_forgot" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_login"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_24"
+                android:layout_marginHorizontal="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_24"
+                android:text="@string/login"
+                android:onClick="@{() -> vm.onLoginClick()}"
+                style="@style/ButtonLogin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/container_go_to_forgot" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_social_login"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_63"
+                android:text="@string/log_in_social"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/button_login" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layout_socials"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:paddingBottom="@dimen/dp_28"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_social_login">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_google"
+                    android:layout_marginEnd="@dimen/dp_4"
+                    app:icon="@drawable/ic_social_google"
+                    style="@style/ButtonSocial" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_facebook"
+                    android:layout_marginStart="@dimen/dp_4"
+                    app:icon="@drawable/ic_social_facebook"
+                    style="@style/ButtonSocial"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

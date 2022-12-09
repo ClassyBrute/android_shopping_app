@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="itemVM"
+            type="com.gd.intership.hdziedziura.androidshopingapp.presentation.viewmodels.home.item_vm.BannerBigVM" />
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_top"
+                android:onClick="@{() -> itemVM.onTopClick()}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:imageResource="@{itemVM.item.imgTop}"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/image_top" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/image_shadow"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="27dp"
+                android:text="@{itemVM.item.textTop}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_17"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="New collection" />
+
+        </FrameLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:onClick="@{() -> itemVM.onLeftClick()}"
+                        app:imageResource="@{itemVM.item.imgCenter}"
+                        android:scaleType="centerCrop"
+                        tools:src="@drawable/image_bottom"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_center"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:layout_marginStart="15dp"
+                        android:text="@{itemVM.item.textCenter}"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/sp_17"
+                        android:textStyle="bold"
+                        tools:text="Summer sale" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_bottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:onClick="@{() -> itemVM.onBottomClick()}"
+                        app:imageResource="@{itemVM.item.imgBottom}"
+                        android:scaleType="centerCrop"
+                        tools:src="@drawable/image_bottom" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_bottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|start"
+                        android:layout_marginStart="13dp"
+                        android:layout_marginBottom="24dp"
+                        android:text="@{itemVM.item.textBottom}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_17"
+                        android:textStyle="bold"
+                        tools:text="Black" />
+
+                </FrameLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_right"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="@{() -> itemVM.onRightClick()}"
+                    app:imageResource="@{itemVM.item.imgRight}"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/image_right" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="37dp"
+                    android:text="@{itemVM.item.textRight}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_17"
+                    android:textStyle="bold"
+                    tools:text="Men's hoodies" />
+
+            </FrameLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

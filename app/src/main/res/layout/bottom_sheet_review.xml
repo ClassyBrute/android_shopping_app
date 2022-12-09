@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.gd.intership.hdziedziura.androidshopingapp.presentation.viewmodels.reviews.ProductReviewsViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_dialog"
+        app:behavior_peekHeight="350dp"
+        android:backgroundTint="@color/background"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/bottom_sheet_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/bottom_sheet_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_3"
+                android:layout_gravity="center"
+                android:src="@drawable/bottom_sheet_bar" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/bottom_sheet_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="@string/what_is_your_rating"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_9"
+                android:textStyle="bold" />
+
+            <RatingBar
+                android:id="@+id/bottom_sheet_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_9"
+                android:rating="@={vm.rating}"
+                android:stepSize="1"
+                android:isIndicator="false"
+                android:progressTint="@color/gold"
+                android:secondaryProgressTint="@color/transparent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/bottom_sheet_description"
+                android:layout_width="@dimen/dp_118"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_9"
+                android:layout_gravity="center"
+                android:text="@string/share_opinion"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_9"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/bottom_sheet_review"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_74"
+                android:hint="@string/your_review"
+                android:layout_margin="@dimen/dp_8"
+                style="@style/TextInputLayout"
+                android:text="@={vm.review}"
+                android:gravity="top"
+                android:background="@color/white" />
+
+            <HorizontalScrollView
+                android:id="@+id/bottom_sheet_pictures_scroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_8"
+                android:scrollbars="none">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/bottom_sheet_pictures_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_53"
+                    android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/bottom_sheet_pictures_recycler"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        tools:itemCount="2"
+                        rvItems="@{vm.addedPhotos}"
+                        app:layoutManager=".presentation.ui.layoutManager.HorizontalLayoutManager"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bottom_sheet_pictures_add"
+                        android:layout_width="@dimen/dp_53"
+                        android:layout_height="match_parent"
+                        app:cardCornerRadius="@dimen/dp_2"
+                        android:layout_marginBottom="1dp"
+                        android:onClick="@{() -> vm.onAddPhotoClick()}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/bottom_sheet_pictures_add_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_8"
+                            android:layout_gravity="center|top"
+                            android:src="@drawable/add_photos_image"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/bottom_sheet_pictures_add_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginBottom="@dimen/dp_8"
+                            android:maxLines="1"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/sp_5"
+                            android:text="@string/add_your_photos"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </HorizontalScrollView>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bottom_sheet_send_review"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_24"
+                style="@style/ButtonLogin"
+                android:onClick="@{() -> vm.onSendReviewClick()}"
+                android:text="@string/send_review"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/dp_14"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:layout_marginHorizontal="@dimen/dp_8"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </FrameLayout>
+</layout>

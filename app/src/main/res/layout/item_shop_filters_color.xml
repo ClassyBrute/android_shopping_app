@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="itemVM"
+            type="com.gd.intership.hdziedziura.androidshopingapp.presentation.viewmodels.shop.item_vm.ColorVM" />
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_12">
+
+        <CheckBox
+            android:layout_weight="1"
+            android:checked="@{itemVM.item.checked}"
+            android:buttonTint="@{itemVM.item.color}"
+            android:onClick="@{() -> itemVM.onColorClick()}"
+            style="@style/CheckboxStyle"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

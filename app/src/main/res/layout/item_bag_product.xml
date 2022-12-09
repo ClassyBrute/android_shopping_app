@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="itemVM"
+            type="com.gd.intership.hdziedziura.androidshopingapp.presentation.viewmodels.bag.item_vm.ProductVM" />
+        <import type="android.text.Html"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_52"
+            android:layout_marginHorizontal="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_1"
+            app:cardCornerRadius="@dimen/dp_4"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:onClick="@{() -> itemVM.onProductClick()}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image"
+                    android:layout_width="@dimen/dp_63"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    imageUrl="@{itemVM.item.image}"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/info_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/image">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title"
+                        android:layout_width="@dimen/dp_100"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        tools:text="Pullover"
+                        android:text="@{itemVM.item.title}"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_8"/>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/specification_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_2"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/color"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text='@{Html.fromHtml(@string/bag_color(itemVM.item.colorText[0]), Html.FROM_HTML_MODE_LEGACY)}'
+                            tools:text="Color: Black"
+                            android:textSize="@dimen/sp_6"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_6"
+                            android:text='@{Html.fromHtml(@string/bag_size(itemVM.item.size[0]), Html.FROM_HTML_MODE_LEGACY)}'
+                            tools:text="Size: L"
+                            android:textSize="@dimen/sp_6"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/amount_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:layout_marginBottom="@dimen/dp_4"
+                    app:layout_constraintStart_toEndOf="@id/image"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/decrease"
+                        android:onClick="@{() -> itemVM.onDecreaseClick()}"
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        android:layout_margin="1dp"
+                        app:icon="@drawable/bag_item_minus"
+                        android:shadowColor="@color/black"
+                        style="@style/ButtonFavorite" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/amount"
+                        android:layout_width="@dimen/dp_10"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        tools:text="1"
+                        android:text="@{Integer.toString(itemVM.item.count)}"
+                        android:layout_marginHorizontal="@dimen/dp_8" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/increase"
+                        android:onClick="@{() -> itemVM.onIncreaseClick()}"
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        android:layout_margin="1dp"
+                        app:icon="@drawable/ic_baseline_add_24"
+                        android:shadowColor="@color/black"
+                        style="@style/ButtonFavorite" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:layout_marginBottom="@dimen/dp_5"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_7"
+                    tools:text="31$"
+                    android:text="@{itemVM.item.price + '$'}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_more"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_4"
+            android:onClick="@{(view) -> itemVM.onMoreClick(view)}"
+            app:icon="@drawable/ic_baseline_more_vert_24"
+            app:iconTint="@color/grey"
+            android:background="@color/transparent"
+            android:padding="@dimen/dp_0"
+            app:layout_constraintEnd_toEndOf="@id/card"
+            app:layout_constraintTop_toTopOf="@id/card"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

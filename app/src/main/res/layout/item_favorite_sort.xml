@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="itemVM"
+            type="com.gd.intership.hdziedziura.androidshopingapp.presentation.viewmodels.favorites.item_vm.SortVM" />
+    </data>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/price_low_high"
+        android:onClick="@{() -> itemVM.onSortClick()}"
+        sortColors="@{itemVM.item.sortColor}"
+        android:text="@{itemVM.item.text}"
+        tools:text="@string/price_highest_to_lowest"
+        style="@style/BottomSheetText" />
+</layout>

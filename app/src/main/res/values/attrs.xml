@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PromotionHome">
+        <attr name="text_top" format="string" />
+        <attr name="text_right" format="string" />
+        <attr name="text_bottom" format="string" />
+        <attr name="text_center" format="string" />
+        <attr name="img_top" format="reference" />
+        <attr name="img_right" format="reference" />
+        <attr name="img_bottom" format="reference" />
+        <attr name="img_center" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="TextInputLayout">
+        <attr name="textInputLayoutNormalSelectorDrawable" format="reference"/>
+        <attr name="textInputLayoutErrorDrawable" format="reference"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.gd.intership.hdziedziura.androidshopingapp.presentation.viewmodels.RegisterViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/signUpText"
+                style="@style/TextLoginTitle"
+                android:text="@string/sign_up"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layout_inputs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_36"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/signUpText">
+
+                <com.gd.intership.hdziedziura.androidshopingapp.presentation.ui.views.TextInputLayout
+                    android:id="@+id/user_name_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_4"
+                    style="@style/TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/user_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_32"
+                        android:afterTextChanged="@{() -> vm.validateName()}"
+                        android:text="@={vm.name}"
+                        android:hint="@string/name"
+                        android:inputType="text"/>
+
+                </com.gd.intership.hdziedziura.androidshopingapp.presentation.ui.views.TextInputLayout>
+
+                <com.gd.intership.hdziedziura.androidshopingapp.presentation.ui.views.TextInputLayout
+                    android:id="@+id/user_email_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_4"
+                    style="@style/TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/user_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_32"
+                        android:afterTextChanged="@{() -> vm.validateEmail()}"
+                        android:text="@={vm.email}"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress"/>
+
+                </com.gd.intership.hdziedziura.androidshopingapp.presentation.ui.views.TextInputLayout>
+
+                <com.gd.intership.hdziedziura.androidshopingapp.presentation.ui.views.TextInputLayout
+                    android:id="@+id/user_password_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/user_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_32"
+                        android:afterTextChanged="@{() -> vm.validatePassword()}"
+                        android:text="@={vm.password}"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"/>
+
+                </com.gd.intership.hdziedziura.androidshopingapp.presentation.ui.views.TextInputLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_go_to_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:onClick="@{() -> vm.onGoToLoginButtonClick()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_inputs">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_go_to_login"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/already_have_an_account"
+                    android:textSize="@dimen/sp_7"
+                    app:layout_constraintEnd_toStartOf="@id/icon_go_to_login"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_go_to_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_2"
+                    android:src="@drawable/ic_baseline_arrow_right_alt_24"
+                    app:layout_constraintBottom_toBottomOf="@id/text_go_to_login"
+                    app:layout_constraintEnd_toEndOf="@id/container_go_to_login"
+                    app:layout_constraintTop_toTopOf="@id/text_go_to_login" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_24"
+                android:layout_marginHorizontal="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_14"
+                android:onClick="@{() -> vm.onRegisterClick()}"
+                android:text="@string/sign_up"
+                style="@style/ButtonLogin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/container_go_to_login" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_social_login"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_63"
+                android:text="@string/sign_up_social"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_sign_up" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layout_socials"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:paddingBottom="@dimen/dp_28"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_social_login">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_google"
+                    style="@style/ButtonSocial"
+                    android:layout_marginEnd="@dimen/dp_4"
+                    app:icon="@drawable/ic_social_google" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_facebook"
+                    style="@style/ButtonSocial"
+                    android:layout_marginStart="@dimen/dp_4"
+                    app:icon="@drawable/ic_social_facebook"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

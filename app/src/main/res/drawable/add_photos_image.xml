@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/color_select"
+        android:width="@dimen/dp_27"
+        android:height="@dimen/dp_27"/>
+    <item android:drawable="@drawable/ic_baseline_photo_camera_24"
+        android:width="@dimen/dp_10"
+        android:height="@dimen/dp_10"
+        android:gravity="center"/>
+
+</layer-list>

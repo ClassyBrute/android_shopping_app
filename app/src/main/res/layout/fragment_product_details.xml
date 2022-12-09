@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.gd.intership.hdziedziura.androidshopingapp.presentation.viewmodels.details.ProductDetailsViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/add_cart">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_206">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="275dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="4dp"
+                            android:scaleType="fitXY"
+                            imageUrl="@{vm.product.image}" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="275dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="4dp"
+                            android:scaleType="fitXY"
+                            imageUrl="@{vm.product.image}" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </HorizontalScrollView>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_36"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button_size"
+                        android:onClick="@{() -> vm.onSizeClick()}"
+                        style="@style/ButtonDetails"
+                        android:layout_width="@dimen/dp_69"
+                        android:layout_height="@dimen/dp_20"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@{vm.chosenSize}" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button_color"
+                        android:onClick="@{() -> vm.onColorClick()}"
+                        style="@style/ButtonDetails"
+                        android:layout_width="@dimen/dp_69"
+                        android:layout_height="@dimen/dp_20"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@{vm.chosenColor}" />
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/ButtonFavorite"
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        android:layout_gravity="center_vertical"
+                        android:onClick="@{(view) -> vm.favoriteBigClick(view)}"
+                        android:checked="@{vm.product.favorite}"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:layout_marginEnd="@dimen/dp_8" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/sp_12"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginStart="@dimen/dp_8"
+                            tools:text="HM"
+                            android:text="@{vm.product.brand}"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxWidth="@dimen/dp_118"
+                            android:ellipsize="end"
+                            android:textSize="@dimen/sp_6"
+                            android:layout_marginStart="@dimen/dp_8"
+                            tools:text="Short black dress"
+
+                            android:text="@{vm.product.title}"/>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{() -> vm.onReviewsClick()}"
+                            android:layout_marginTop="@dimen/dp_4"
+                            android:layout_marginStart="@dimen/dp_8"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatRatingBar
+                                android:id="@+id/item_rating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.AppCompat.RatingBar.Small"
+                                android:rating="@{vm.product.rating}"
+                                android:progressTint="@color/gold"
+                                android:secondaryProgressTint="@color/transparent"
+                                android:numStars="5" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text='@{"("+vm.product.reviewCount+")"}'
+                                android:layout_marginStart="@dimen/dp_1"
+                                android:textSize="@dimen/sp_5"
+                                android:layout_gravity="center"
+                                app:layout_constraintStart_toEndOf="@id/item_rating"
+                                app:layout_constraintBottom_toBottomOf="@id/item_rating"
+                                app:layout_constraintTop_toTopOf="@id/item_rating" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/sp_12"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="@dimen/dp_8"
+                            tools:text="$19.99"
+                            android:text="@{'$'+vm.product.price}"
+                            android:layout_gravity="end"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_8"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_marginBottom="@dimen/dp_8"
+                    android:textColor="@color/black"
+                    android:text="@{vm.product.description}"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:text="@string/shipping_info"
+                    android:textColor="@color/black"
+                    android:textAllCaps="false"
+                    android:textAlignment="viewStart"
+                    app:icon="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    app:iconTint="@color/black"
+                    app:iconGravity="end" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:text="@string/support"
+                    android:textColor="@color/black"
+                    android:textAllCaps="false"
+                    android:textAlignment="viewStart"
+                    app:icon="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    app:iconTint="@color/black"
+                    app:iconGravity="end" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_bottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:layout_marginBottom="@dimen/dp_6"
+                        android:text="@string/you_can_also_like_this"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_9"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp_8"
+                        android:textSize="@dimen/sp_6"
+                        android:text="@{vm.recyclerElements}"
+                        tools:text="12 items"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/text_bottom"
+                        app:layout_constraintTop_toTopOf="@id/text_bottom"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:layout_marginStart="@dimen/dp_7"
+                    app:rvItems="@{vm.data}"
+                    app:layoutManager=".presentation.ui.layoutManager.HorizontalLayoutManager"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </ScrollView>
+
+        <FrameLayout
+            android:id="@+id/add_cart"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_56"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/scroll_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_24"
+                android:onClick="@{() -> vm.onAddToCartClick()}"
+                style="@style/ButtonLogin"
+                android:text="@string/add_to_cart"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="@dimen/dp_8"
+                android:layout_marginHorizontal="@dimen/dp_8"/>
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

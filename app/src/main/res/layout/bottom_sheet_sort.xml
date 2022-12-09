@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.gd.intership.hdziedziura.androidshopingapp.presentation.viewmodels.SortViewModel" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_dialog"
+        app:behavior_peekHeight="350dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_3"
+                android:layout_gravity="center"
+                android:src="@drawable/bottom_sheet_bar" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="@string/sort_by"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_9"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:onClick="@{() -> vm.onPriceLowToHighClick()}"
+                sortColors="@{vm.colorsPriceAsc}"
+                android:id="@+id/price_low_high"
+                style="@style/BottomSheetText"
+                android:layout_marginTop="@dimen/dp_16"
+                android:text="@string/price_lowest_to_highest"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                sortColors="@{vm.colorsPriceDesc}"
+                android:onClick="@{() -> vm.onPriceHighToLowClick()}"
+                android:id="@+id/price_high_low"
+                style="@style/BottomSheetText"
+                android:text="@string/price_highest_to_lowest" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                sortColors="@{vm.colorsRatingAsc}"
+                android:onClick="@{() -> vm.onRatingLowToHighClick()}"
+                android:id="@+id/rating_low_high"
+                style="@style/BottomSheetText"
+                android:text="@string/rating_lowest_to_highest"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                sortColors="@{vm.colorsRatingDesc}"
+                android:onClick="@{() -> vm.onRatingHighToLowClick()}"
+                android:id="@+id/rating_high_low"
+                style="@style/BottomSheetText"
+                android:text="@string/rating_highest_to_lowest"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </FrameLayout>
+</layout>
